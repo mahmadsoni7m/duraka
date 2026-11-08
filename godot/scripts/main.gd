@@ -95,10 +95,11 @@ func _draw() -> void:
 		_card(Vector2(70, sz.y / 2 - 20), view["trump_card"], Vector2(70, 100))
 	draw_string(ThemeDB.fallback_font, Vector2(40, sz.y / 2 + 80), "%s: %s  (%d)" % [Loc.t("trump"), view["trump"], view["deck"]], HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color.WHITE)
 	# table
-	for i in view["table"].size():
-		var p = view["table"][i]
-		var x := 200.0 + (i % 6) * 130
-		var y := sz.y / 2 - 90 + (i / 6) * 0
+	var tbl: Array = view["table"]
+	for i in range(tbl.size()):
+		var p: Array = tbl[i]
+		var x: float = 200.0 + float(i % 6) * 130.0
+		var y: float = sz.y / 2.0 - 90.0
 		_card(Vector2(x, y), p[0])
 		if p[1] != null: _card(Vector2(x + 22, y + 24), p[1])
 		else: hit.append([Rect2(Vector2(x, y), Vector2(70, 100)), ["target", i]])
